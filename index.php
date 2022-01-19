@@ -9,19 +9,18 @@ $baseUrl = "https://api.github.com/users/$usernameAuth/";
 $followingUrl = "${baseUrl}following";
 $followersUrl = "${baseUrl}followers";
 
-getFollowers($followersUrl, $usernameAuth, $passAuth);
+// getFollowers($followersUrl, $usernameAuth);
+getFollowing($followersUrl, $usernameAuth);
 
-function getFollowers($url, $username, $pass)
+function getFollowers($url, $username, $pass = '')
 {
     $curl = curl_init($url);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($curl, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
     curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
     curl_setopt($curl, CURLOPT_USERPWD, $username . ':' . $pass);
-
     $output = curl_exec($curl);
 
-    $info = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
     $result = json_decode($output);
 
@@ -30,7 +29,7 @@ function getFollowers($url, $username, $pass)
     echo '<pre>' . print_r($result, true) . '</pre>';
 }
 
-function getFollowing($url, $username, $pass)
+function getFollowing($url, $username, $pass = '')
 {
     $curl = curl_init($url);
 
@@ -38,10 +37,8 @@ function getFollowing($url, $username, $pass)
     curl_setopt($curl, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
     curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
     curl_setopt($curl, CURLOPT_USERPWD, $username . ':' . $pass);
-
     $output = curl_exec($curl);
 
-    $info = curl_getinfo($curl, CURLINFO_HTTP_CODE);
     $result = json_decode($output);
 
     curl_close($curl);
