@@ -3,7 +3,7 @@
 require_once __DIR__ . '/config.php';
 
 $usernameAuth = Config::USERNAME;
-$passAuth = Config::password;
+$passAuth = Config::PASSWORD;
 
 $baseUrl = "https://api.github.com/users/$usernameAuth/";
 $followingUrl = "${baseUrl}following";
