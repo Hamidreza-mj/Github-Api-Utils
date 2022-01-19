@@ -3,7 +3,7 @@
 /**
  * you need to make config.php file in the cloned folder and set class name to Config
  *  
- * put your GitHub username in the #USERNAME variable
+ * put your GitHub username in the USERNAME constant
  */
 class ConfigTemp
 {
